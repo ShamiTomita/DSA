@@ -38,3 +38,18 @@ pivot([4, 8, 2, 1, 5, 7, 6, 3])
 //[4, 2, 8, 1, 5, 7, 6, 3]//swapIndex = 1
 //[4, 2, 8, 1, 5, 7, 6, 3]//swapIndex = 2
 //[3, 8, 2, 4, 5, 7, 6, 3]//switch start with swapIndex//4 is in the correct spot
+//Quick sort calls the pivot helper on the array, recursively call on right and left side
+//all happening in the same array
+
+function quickSort(arr, left = 0, right = arr.length-1){
+  if (left< right){
+    let pivotIndex = pivot(arr, left, right)//3
+    //left
+    quickSort(arr, left, pivotIndex-1);
+    quickSort(arr, pivotIndex+1, right);
+    //array stays the same but left and right are constantly changing
+    //our conditional is when left and right are equal or there is only one element within a subarray
+  }
+  return arr
+
+}
