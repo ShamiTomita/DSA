@@ -13,5 +13,5 @@ function bubbleSort(arr){
     }
     if (noSwaps) break;
   }
-  return arr;
+  return arr
 }

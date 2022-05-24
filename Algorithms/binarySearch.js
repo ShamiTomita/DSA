@@ -14,5 +14,5 @@ function binarySearch(arr, val){
             right = guess -1
             }
     }
-    return -1;
+    return -1
 }
