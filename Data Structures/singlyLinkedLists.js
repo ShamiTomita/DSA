@@ -27,6 +27,7 @@ class SinglyLinkedList{
   push(val){
     //should assign a new node to the head (and or tail)
     let newNode = new Node(val)
+    //edgecase if empty
     if(!this.head){
       this.head = newNode;
     }else{
