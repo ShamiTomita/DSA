@@ -17,3 +17,23 @@ let first = new Node("hi");
 first.next = new Node("there");
 first.next.nex = new Node("how");
 //this is a bad way of constructing a singly linked list
+
+class SinglyLinkedList{
+  constructor(){
+    this.head = null;
+    this.tails = null;
+    this.length = 0;
+  }
+  push(val){
+    //should assign a new node to the head (and or tail)
+    let newNode = new Node(val)
+    if(!this.head){
+      this.head = newNode;
+    }else{
+      this.tail.next = newNode;
+      this.tail = newNode
+    }
+    this.length++;
+    return this;
+  }
+}
