@@ -12,10 +12,6 @@ class Node{
     this.next = null;
   }
 }
-
-let first = new Node("hi");
-first.next = new Node("there");
-first.next.nex = new Node("how");
 //this is a bad way of constructing a singly linked list
 
 class SinglyLinkedList{
@@ -61,4 +57,15 @@ class SinglyLinkedList{
     }
     return current;
   }
+  shit(){
+    if(!this.head) return undefined;
+    let current = this.head;
+    this.head = current.next;
+    this.length--;
+    return current; //the old head
+
+  }
 }
+let first = new Node("hi");
+first.next = new Node("there");
+first.next.next = new Node("how");

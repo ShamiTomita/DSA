@@ -12,7 +12,6 @@ function merge(arr1, arr2){
             j++;
         }
     }
-    //once there are no more items in one of the arrays
     while(i < arr1.length) {
         results.push(arr1[i])
         i++;
