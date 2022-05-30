@@ -54,8 +54,24 @@ class BinarySearchTree{
     }
   }
   find(value){
-    
+    if(!this.root) return false;
+    if(this.root.value === value) return this.root;
+    let current = this.root;
+    let found = false;
+    while(current && !found){//as soon as there is no current, our loop will stop
+      if(value < current.value){
+        current = current.left;
+      }else if(value > current.value){
+        current = current.right;
+      }else{
+        found = true
+      }
+    }
+    if(found === false) return undefined;
+    return current;
   }
+
+
 }
 
 let tree = new BinarySearchTree();
@@ -63,3 +79,5 @@ tree.root = new Node (10);
 tree.root.right = new Node(15);
 tree.root.left = new Node(7);
 tree.root.left.right = new Node(9);
+
+//BIG O insertion-searching = O(log n) best+average 
