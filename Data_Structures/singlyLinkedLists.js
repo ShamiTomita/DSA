@@ -17,7 +17,7 @@ class Node{
 class SinglyLinkedList{
   constructor(){
     this.head = null;
-    this.tails = null;
+    this.tail = null;
     this.length = 0;
   }
   push(val){
