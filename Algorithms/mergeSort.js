@@ -1,4 +1,5 @@
 //when you have the two sorted arrays
+//BIG O is O(n log ns)
 function merge(arr1, arr2){
     let results = [];
     let i = 0;
