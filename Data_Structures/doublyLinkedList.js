@@ -139,6 +139,7 @@ class DoublyLinkedList {
   }
 }
 
+//BIG O DOUBLY = Insertion/Remove O(1) and Searching/Access O(N)
 
 //compare Singly and Doubly
 //singly is better on space but more cumbersome
