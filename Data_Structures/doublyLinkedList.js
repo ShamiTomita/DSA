@@ -124,7 +124,22 @@ class DoublyLinkedList {
   }
 
   remove(index){
+    if(index < 0 || index >= this.length) return undefined;
+    if(index === 0) return this.shift();
+    if(index === this.length-1) return this.pop();
 
+    let removeThisNode = this.get(index);
+    let leftNode = removeThisNode.previous;
+    let rightNode = removeThisNode.next;
+
+    leftNode.next = rightNode, rightNode.previous = leftNode;
+    removeThisNode.next = null, removeThisNode.previous = null;
+    this.length--;
+    return removeThisNode;
   }
-
 }
+
+
+//compare Singly and Doubly
+//singly is better on space but more cumbersome
+//doubly is flexibly but takes up more space;
