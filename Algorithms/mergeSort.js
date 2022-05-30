@@ -1,4 +1,6 @@
 //when you have the two sorted arrays
+//BIG O is O(n log n) best for sorting algorithms 
+//O(log n) for the decompositions & O(n) for the comparisons,
 function merge(arr1, arr2){
     let results = [];
     let i = 0;
