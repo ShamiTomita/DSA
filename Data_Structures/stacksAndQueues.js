@@ -59,3 +59,56 @@ class Stack{
     return ++this.size;
   }
 }
+
+//BIG O of stacks -> insertion & remove O(1)
+//used to handle function invocation, not a builtin DS in JS;
+
+
+
+//QUEUES;
+//similar to a stack, but it is FIFO!!!!
+//background tasks, uploading resources,  printing
+//can be implemented with an array or a class
+
+let queue = ["a", "b", "c"];
+//can be done with push and shift
+queue.push("1a");
+queue.shift();
+//or pop and unshift
+queue.unshift("1a");
+queue.pop();
+
+class Queue{
+  constructor(){
+    this.first = null;
+    this.last = null;
+    this.size = 0;
+  }
+
+  //add to the end and remove from the beginning
+  enqueue(val){
+    //add to the end
+    let newNode = new Node(value);
+    if(!this.last){
+      this.first = newNode;
+      this.last = newNode;
+    }else{
+      this.last.next = newNode;
+      this.last = newNode;
+    }
+    ++this.size;
+    return this;
+
+  }
+  dequeue(){
+    //remove from the beginning
+    if(!this.first) return null;
+    let temp = this.first;
+    if(this.first === this.last){
+      this.last = null;
+    }
+    this.first = this.first.next;
+    --this.size;
+    return temp.value;
+  }
+}
