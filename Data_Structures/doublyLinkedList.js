@@ -143,4 +143,4 @@ class DoublyLinkedList {
 
 //compare Singly and Doubly
 //singly is better on space but more cumbersome
-//doubly is flexibly but takes up more space;
+//doubly is flexible or better at finding nodes but takes up more space;
