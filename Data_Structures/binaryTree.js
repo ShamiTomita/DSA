@@ -80,4 +80,5 @@ tree.root.right = new Node(15);
 tree.root.left = new Node(7);
 tree.root.left.right = new Node(9);
 
-//BIG O insertion-searching = O(log n) best+average 
+//BIG O insertion-searching = O(log n) best+average tho not guaranteed;
+//depends on the type of binary tree ( a bst that looks like a linked list is valid and not great!)
