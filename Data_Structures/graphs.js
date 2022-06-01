@@ -42,4 +42,62 @@ class Graph{
     this.adjacencyList[vertex2].push(vertex1);
     }
   }
+  removeEdge(vertex1, vertex2){
+    if(!!this.adjacencyList[vertex1] & !!this.adjacencyList[vertex2]){
+    this.adjacencyList[vertex1] = this.adjacencyList[vertex1].filter(
+      v => v!== vertex2
+    );
+    this.adjacencyList[vertex2] = this.adjacencyList[vertex2].filter(
+      v => v!== vertex1
+    );
+    }
+  }
+  removeVertex(vertex){
+    while(this.adjacencyList[vertex].length){
+      const adjacentVertex = this.adjacencyList[vertex].pop();
+      this.removeEdge(vertex, adjacentVertex);
+    }
+    delete this.adjacencyList[vertex]
+  }
+  traverseDF(start){
+    //how far down can we go?
+    let visited = {}
+    let result = []
+    const adjacencyList = this.adjacencyList;
+
+    (function dfs(vertex){
+      if(!vertex) return null;
+      result.push(vertex);
+      visited[vertex] = true;
+      adjacencyList[vertex].forEach(neighbor => {
+        if(!visited[neighbor]) return dfs(neighbor)
+      });
+    })(start);
+    return result;
+  }
+
+  DFSIteratively(start){
+    let s = [start];
+    let result = [];
+    let visited = {}
+    let currentVertex;
+
+    visited[start] = true;
+    while(s.length){
+      console.log(s)
+      currentVertex = s.pop()
+      result.push(currentVertex)
+
+      this.adjacencyList[currentVertex].forEach(pal =>{
+        if(!visited[pal]){
+          visited[pal] = true;
+          s.push(pal)
+        }
+      })
+    }
+    return result;
+  }
+  traverseBF(){
+    //how many neighbors do I have?
+  }
 }
