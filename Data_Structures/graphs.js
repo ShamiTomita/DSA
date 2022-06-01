@@ -97,7 +97,25 @@ class Graph{
     }
     return result;
   }
-  traverseBF(){
+  traverseBF(start){
     //how many neighbors do I have?
+    let queue = [start];
+    let visited = {};
+    let result = [];
+    let currentVertex;
+    visited[start] = true;
+
+    while(queue.length){
+      currentVertex = queue.shift()
+      result.push(currentVertex)
+      this.adjacencyList[currentVertex].forEach(neighbor =>{
+        if(!visited[neighbor]){
+          visited[neighbor] = true;
+          queue.push(neighbor)
+        }
+
+      })
+    }
+    return result;
   }
 }
