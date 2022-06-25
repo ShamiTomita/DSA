@@ -32,3 +32,18 @@ function dynamicSmallestSubarray(arr){
   }
   return minWindowSize;
 }
+//Dynamic with Aux DS
+function dynamicLongestSubWDistinct(str){
+  let k = 2; //DistinctCharacters
+  let hashMap = new Map();
+  let maxLength = 0;
+  for(let i =0, j =0; j < str.length; j++){
+    hashMap.set(str.charAt(j), j);
+    if (hashMap.size > k){
+      while(i < j && hashMap.get(s.charAt(i)) != i){i++;}
+      hashMap.remove(s.charAt(i++))
+    }
+    maxLength = Math.max(maxLen, j-i+1);
+  }
+  return maxLength
+}
