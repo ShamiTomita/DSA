@@ -119,3 +119,58 @@ class Graph{
     return result;
   }
 }
+
+
+//graphs
+//a collection of nodes and edges
+//directed (one way) or undirected graphs (two way)
+//graph traversal
+
+//depth first
+//uses a STACK LIFO push onto the top of stack and pop off the top !!!
+
+//breadth first
+//uses a QUEUE FIFO push into queue and shift out
+
+
+const graph = {
+  a: ['b', 'c'],
+  b: ['d'],
+  c: ['e'],
+  d: ['f'],
+  e: [],
+  f: []
+}
+
+const depthFirstPrint = (graph, source) => {
+  const stack = [source]; //push and pop
+
+  while(stack.length > 0){
+    current = stack.pop(); //process node AFTER POP
+    console.log(current); //first loop print out 'a'
+    for (let neighbor of graph[current]){
+      stack.push(neighbor)
+    }
+
+  }
+
+};
+
+const recursiveDepthFirstPrint = (graph, source) => {
+  console.log(source)
+  //implicit basecase
+  for (let neighbor of graph[source]){
+    recursiveDepthFirstPrint(graph, neighbor)
+  }
+}
+
+const breadthFirstPrint = (graph, source) => { //can only be done iteratively
+  let queue = [source]; //push & shift
+  while(queue.length > 0){
+    let current = queue.shift();
+    console.log(current);
+    for(let neighbor of graph[current]){
+      queue.push(neighbor);
+    }
+  }
+}
