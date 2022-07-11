@@ -82,3 +82,38 @@ tree.root.left.right = new Node(9);
 
 //BIG O insertion-searching = O(log n) best+average tho not guaranteed;
 //depends on the type of binary tree ( a bst that looks like a linked list is valid and not great!)
+
+const depthFirstValues = (root) => {
+  // todo
+  let stack = [root];
+  while(stack.length > 0){
+    let current = stack.pop();
+    console.log(current.val)
+    if(current.right) stack.push(current.right);
+    if(current.left) stack.push(current.left);
+
+  }
+};
+
+const depthFirstValues = (root) => {//RECURSIVE
+  //whats my base case? an empty tree
+  if(root === null) return [];
+  //the recursive leap of faith... if I'm at a then =>
+  const leftValues = depthFirstValues(root.left); //[b,d,e]
+  const rightValues = depthFirstValues(root.right); //[c, f]
+  //how do we combine the results?
+  return [root.val,...leftValues,...rightValues]//assuming correctness
+}
+
+const breadthFirstValues = (root) => {
+  if(!root) return [];
+  let queue = [root]; //shift and push
+  const result = [];
+  while(queue.length > 0){
+    const current = queue.shift();
+    result.push(current.val);
+    if(current.left !== null) queue.push(current.left);
+    if(current.right !== null) queue.push(current.right);
+  }
+  return result;
+}

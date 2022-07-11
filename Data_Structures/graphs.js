@@ -174,3 +174,151 @@ const breadthFirstPrint = (graph, source) => { //can only be done iteratively
     }
   }
 }
+
+
+//acyclic = no cycles
+//cycle
+//BIG O graphs at worst are O(n2)
+
+function hasPathDFS = (graph, src, dst) => {
+  if(src === dst) return true;
+
+  for (let neighbor of graph[src]){
+    if(hasPath(graph, neighbor, dst) === true){
+      return true;
+    }
+  }
+
+  return false;
+};
+
+function hasPathBFS = (graph, src, dst) => {
+  const queue = [src];
+  while(queue.length > 0){
+    currentNode = queue.shift();
+    if(current === dst) return true;
+    for(let neighbor of graph[currentNode]){
+      queue.push(neighbor);
+    }
+  }
+  return false;
+}
+
+
+//undirected graph
+//convert edge list intp an adjacency list
+graph = {}
+//create keys out of the nodes in each edge
+//what if my graph has a cycle???
+//use a visited pattern
+
+const undirectedPath = (edges, nodeA, nodeB) =>{
+  const graph = buildGraph(edges);
+  //either BFS or DFS
+  //DFS!
+  return hasPath(graph, nodeA, nodeB, new Set());
+}
+
+const hasPath = (graph, src, dst, visited) =>{
+  if(src === dst) return true;
+  if(visited.has(src)) return false;//here we avoid infinite recursion if cycle
+
+  visited.add(src);
+
+  for(let neighbor of graph[src]){
+    if(hasPath(graph, neighbor, dst, visited) === true){ //src and neighbor have a connection, so if neighbor and dst are connected then so is src and dst
+      return true;
+    }
+  }
+  return false;
+};
+
+const buildGraph = (edges) =>{
+  const graph = {}
+  for (let edge of edges){
+    const [a, b] = edge;
+    if(!(a in graph)) graph[a] = [];
+    if(!(b in graph)) graph[b] = [];
+    graph[a].push(b);
+    graph[b].push(a);
+  }
+  return graph;
+}
+
+//Connected Components
+const countConnectedComponents = (graph) => {
+  let count = 0;
+  const visited = new Set(); //JS Sets give O1 lookup!!! supper fast and easy!!!! use them!!!
+  //SETS CAN CONTAIN MULTIPLE TYPES
+  for(let node in graph){
+    //begin traversal for each node
+    console.log(visited)
+    if(explore(graph, node, visited) === true) count +=1;//DFT
+  }
+  return count;
+}
+
+const explore = (graph, current, visited) => {
+  if(visited.has(String(current))) return false; //serves two purposes
+
+  visited.add(String(current));
+
+  for(let neighbor of graph[current]){
+    explore(graph, neighbor, visited)
+  }
+
+  return true; //has finished exploring all the neighbors!
+}
+
+
+const largestComponent = (graph) => {
+  let count;
+  //*********
+  const explore = (graph, current, visited) =>{
+    if(visited.has(String(current))) return false;
+    visited.add(String(current));
+    for(let neighbor of graph[current]){
+      if(explore(graph, neighbor, visited))count++;
+    }
+    return true
+  }
+  //*********
+
+  let components = []
+  const visited = new Set();
+  for(let node in graph){
+    count = 1;
+    if(explore(graph, node, visited) === true){
+      components.push(count)
+    }
+  }
+  console.log(components)
+  if(components.length < 1) return 0;
+  return Math.max(...components)
+}
+
+
+const shortestPath = (edges, nodeA, nodeB) => {
+  //BFS is useful for shortest path
+  let graph = buildGraph(edges);
+  let visited = new Set([nodeA]);
+
+  let queue = [ [nodeA, 0] ]; //FIFO push shift
+
+  while(queue.length > 0){
+    const [node, distance] = queue.shift();
+    if(node === nodeB) return distance;
+
+    for(let neighbor of graph[node]){
+      if(!visited.has(neighbor)){
+        visited.add(neighbor);
+        queue.push( [neighbor, distance + 1]) //+1 to increment
+      }
+    }
+  }
+  return -1;
+}
+
+const islandCounter = () => {
+  
+}
