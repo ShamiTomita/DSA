@@ -10,7 +10,7 @@
 //the numbers seem to get sifted from smallest to largest
 //amount of loops is equal to the amount of digits in the largest number
 //must find out what the digit of a certain number is
-
+//
 //Helper Methods:
 function getDigit(num, position){
   //takes into consideration negative numbers and positions greater than the length of the number
